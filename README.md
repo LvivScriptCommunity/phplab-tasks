@@ -27,3 +27,4 @@ https://phpunit.readthedocs.io/en/9.2/textui.html
  * `cd` into cloned repository folder
  * Execute in terminal `git fetch upstream`
  * Execute in terminal `git pull upstream master`
+ * Execute in terminal `composer dump-autoload`
