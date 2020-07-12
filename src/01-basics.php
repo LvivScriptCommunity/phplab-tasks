@@ -12,25 +12,16 @@
  */
 function getMinuteQuarter(int $minute)
 {
-    if($minute > 0 && $minute <= 15)
-    {
+    if ($minute > 0 && $minute <= 15) {
         return 'first';
-    }
-    elseif($minute > 15 && $minute <= 30)
-    {
+    } elseif ($minute > 15 && $minute <= 30) {
         return 'second';
-    }
-    elseif($minute > 30 && $minute <= 45)
-    {
+    } elseif ($minute > 30 && $minute <= 45) {
         return 'third';
-    }
-    elseif($minute == 0 || ($minute > 45 && $minute <= 60))
-    {
+    } elseif ($minute == 0 || ($minute > 45 && $minute <= 60)) {
         return 'fourth';
-    }
-    else
-    {
-        throw new InvalidArgumentException();
+    } else {
+        throw new InvalidArgumentException('Minute is negative of greater then 60. You input '.$minute);
     }
 }
 
@@ -47,9 +38,8 @@ function getMinuteQuarter(int $minute)
  */
 function isLeapYear(int $year)
 {
-    if($year <= 1900)
-    {
-        throw new InvalidArgumentException();
+    if ($year <= 1900) {
+        throw new InvalidArgumentException('Year is lower then 1900. You input '.$year);
     }
 
     return (date('L', mktime(0, 0, 0, 1, 1, $year))) ? true : false;
@@ -68,15 +58,14 @@ function isLeapYear(int $year)
  */
 function isSumEqual(string $input)
 {
+    $splitInput = str_split($input);
+
+    if (count($splitInput) != 6) {
+        throw new InvalidArgumentException('Number contains more or less then 6 digits. You input'.$input);
+    } else {
+        $sumFirstThreeDigits = (int)$splitInput[0] + (int)$splitInput[1] + (int)$splitInput[2];
+        $sumSecondThreeDigits = (int)$splitInput[3] + (int)$splitInput[4] + (int)$splitInput[5];
     
-    $arrInput = str_split($input);
-    if(count($arrInput) > 6)
-    {
-        throw new InvalidArgumentException();
+        return ($sumFirstThreeDigits == $sumSecondThreeDigits) ? true : false;
     }
-
-    $sumFirstThreeDigits = $arrInput[0] + $arrInput[1] + $arrInput[2];
-    $sumSecondThreeDigits = $arrInput[3] + $arrInput[4] + $arrInput[5];
-
-    return ($sumFirstThreeDigits == $sumSecondThreeDigits) ? true : false;
 }
