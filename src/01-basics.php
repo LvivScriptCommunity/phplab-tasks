@@ -12,6 +12,17 @@
  */
 function getMinuteQuarter(int $minute)
 {
+    if ($minute > 0 AND $minute < 16) {
+        return 'first';
+    } elseif ($minute > 15 AND $minute < 31) {
+        return 'second';
+    } elseif ($minute > 30 AND $minute < 46) {
+        return 'third';
+    } elseif ($minute > 45 AND $minute < 61 OR $minute == 0) {
+        return 'fourth';
+    } elseif ($minute < 0 OR $minute > 60 ) {
+        throw new InvalidArgumentException('InvalidArgumentException;');
+    }
 }
 
 /**
@@ -27,6 +38,24 @@ function getMinuteQuarter(int $minute)
  */
 function isLeapYear(int $year)
 {
+    if ($year >= 1900) {
+        if ($year % 4 !== 0) {
+            return false;
+        } elseif ($year % 100 !== 0) {
+            return true;
+        } elseif ($year % 400 !== 0) {
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        throw new InvalidArgumentException('InvalidArgumentException;');
+    }
+
+   /* if (year is not divisible by 4) then (it is a common year)
+    else if (year is not divisible by 100) then (it is a leap year)
+    else if (year is not divisible by 400) then (it is a common year)
+    else (it is a leap year)*/
 }
 
 /**
@@ -42,4 +71,13 @@ function isLeapYear(int $year)
  */
 function isSumEqual(string $input)
 {
+    if (strlen($input) == 6) {
+        if ($input[0] + $input[1] + $input[2] == $input[3] + $input[4] + $input[5]) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+    throw new InvalidArgumentException('InvalidArgumentException;');
+}
 }
