@@ -9,6 +9,10 @@
  */
 function snakeCaseToCamelCase(string $input)
 {
+    $input = ucwords($input, "_");
+    $input = lcfirst($input);
+    $input = str_replace("_", "", $input);
+    return $input;
 }
 
 /**
@@ -21,6 +25,15 @@ function snakeCaseToCamelCase(string $input)
  */
 function mirrorMultibyteString(string $input)
 {
+    $arrayFromStr = explode(" ", $input);
+
+    $array = [];
+    foreach ($arrayFromStr as $word) {
+        $array[] = implode(array_reverse(mb_str_split($word)));
+    }
+
+    $strRev = (implode(" ", $array));
+    return $strRev;
 }
 
 /**
@@ -39,4 +52,9 @@ function mirrorMultibyteString(string $input)
  */
 function getBrandName(string $noun)
 {
+    if ($noun[0] == $noun[strlen($noun)-1]) {
+        return ucfirst($noun) . substr($noun, 1);
+    } else {
+        return 'The ' . ucfirst($noun);
+    }
 }
