@@ -10,6 +10,14 @@
  */
 function repeatArrayValues(array $input)
 {
+    $result = [];
+    foreach ($input as $value){
+        for($i = 1; $i < $value; $i++){
+            $result[] = $value;
+        }
+    }
+    return $result;
+    ptint_r($result);
 }
 
 /**
