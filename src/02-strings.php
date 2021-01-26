@@ -1,4 +1,4 @@
-<?php
+Basics test<?php
 /**
  * The $input variable contains text in snake case (i.e. hello_world or this_is_home_task)
  * Transform it into camel cased string and return (i.e. helloWorld or thisIsHomeTask)
@@ -7,8 +7,10 @@
  * @param  string  $input
  * @return string
  */
-function snakeCaseToCamelCase(string $input)
+function snakeCaseToCamelCase(string $input,  $capitalizeFirstCharacter = false)
 {
+     //return str_replace($separator, '', ucwords($input, $separator));
+    return $str = lcfirst (str_replace(' ', '', ucwords(str_replace('_', ' ', $input))));
 }
 
 /**
@@ -21,6 +23,9 @@ function snakeCaseToCamelCase(string $input)
  */
 function mirrorMultibyteString(string $input)
 {
+    $mirror = mb_str_split($input, 1, mb_internal_encoding());
+    $mirror = implode('', array_reverse($mirror));
+    return $mirror = implode(' ', array_reverse(explode(' ', $mirror)));
 }
 
 /**
@@ -38,5 +43,13 @@ function mirrorMultibyteString(string $input)
  * @return string
  */
 function getBrandName(string $noun)
-{
+{    
+    $first = substr($noun, 0, 1);
+    $last = substr($noun, -1);
+    $the = 'The';
+    if ($last == $first){
+        return ucfirst($first . '' . str_repeat(substr($noun, 1), 2));
+    } else {
+        return $result = $the . ' ' . ucfirst($noun);
+    }
 }
