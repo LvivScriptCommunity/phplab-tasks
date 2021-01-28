@@ -8,16 +8,17 @@
  * @param  array  $input
  * @return array
  */
+
 function repeatArrayValues(array $input)
 {
     $result = [];
+    
     foreach ($input as $value){
-        for($i = 1; $i < $value; $i++){
+        for ($i = 0; $i < $value; $i++){
             $result[] = $value;
         }
     }
     return $result;
-    ptint_r($result);
 }
 
 /**
@@ -28,8 +29,15 @@ function repeatArrayValues(array $input)
  * @param  array  $input
  * @return int
  */
+
 function getUniqueValue(array $input)
 {
+    $diffUniqe = array_diff($input, array_diff_key ($input, array_unique($input)));
+    
+    if (empty($diffUniqe)) {
+        return 0;
+    }
+    return min($diffUniqe);
 }
 
 /**
@@ -58,4 +66,11 @@ function getUniqueValue(array $input)
  */
 function groupByTag(array $input)
 {
+    array_multisort($input);
+    foreach($input as $row) {
+        foreach($row ['tags'] as $tag){
+            $sortedData[$tag][] = $row['name'];
+            }
+        }
+    return $sortedData;
 }
