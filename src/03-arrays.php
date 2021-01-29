@@ -10,6 +10,13 @@
  */
 function repeatArrayValues(array $input)
 {
+    $arr = [];
+    foreach ($input as $elem) {
+        for ($i = 1; $i <= $elem; $i++) {
+            $arr[] = $elem;
+        }
+    }
+    return $arr;
 }
 
 /**
@@ -22,6 +29,12 @@ function repeatArrayValues(array $input)
  */
 function getUniqueValue(array $input)
 {
+    $result = array_diff($input, array_diff_assoc($input, array_unique($input)));
+    if (!empty($result)) {
+        return min($result);
+    } else {
+        return 0;
+    }
 }
 
 /**
@@ -50,4 +63,14 @@ function getUniqueValue(array $input)
  */
 function groupByTag(array $input)
 {
+    sort($input);
+
+    foreach ($input as $elem) {
+        $arrayNew[] = array_fill_keys($elem['tags'], $elem['name']);
+    }
+
+    $result = array_merge_recursive($arrayNew[0], $arrayNew[1], $arrayNew[2]);
+    ksort($result);
+
+    return $result;
 }
