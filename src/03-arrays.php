@@ -27,16 +27,17 @@ function repeatArrayValues(array $input)
  * @param  array  $input
  * @return int
  */
-function getUniqueValue(array $input)
-{
-    $result = array_diff($input, array_diff_assoc($input, array_unique($input)));
-    if (!empty($result)) {
-        return min($result);
-    } else {
-        return 0;
+function groupByTag(array $input)
+    {
+        sort($input);
+        $result = [];
+        foreach ($input as $key => $value) {
+            foreach ($value['tags'] as $tag) {
+                $result[$tag][] = $value['name'];
+            }
+        }
+        return $result;
     }
-}
-
 /**
  * The $input variable contains an array of arrays
  * Each sub array has keys: name (contains strings), tags (contains array of strings)
