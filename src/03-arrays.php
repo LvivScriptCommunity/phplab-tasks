@@ -72,26 +72,3 @@ function groupByTag(array $input)
     }
     return $result;
 }
-
-//    sort($input);
-//
-//    $arrayNew = [];
-//    foreach ($input as $elem) {
-//        $arrayNew[] = array_fill_keys($elem['tags'], $elem['name']);
-//    }
-//
-//    $result = array_merge_recursive($arrayNew[0], $arrayNew[1], $arrayNew[2]);
-//    ksort($result);
-//
-//    return $result;
-
-
-//    array_multisort($input);
-//    $newArr =[];
-//    foreach ($input as $item){
-//        $newArr = array_merge_recursive($newArr, array_combine ( $item['tags'], array_fill(0, count($item['tags']), $item['name'])));
-//    }
-//    ksort($newArr);
-//
-//    return $newArr;
-//}
