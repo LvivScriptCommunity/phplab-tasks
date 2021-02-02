@@ -62,16 +62,3 @@ function groupByTag(array $input)
  * @param  array  $input
  * @return array
  */
-function groupByTag(array $input)
-{
-    sort($input);
-
-    foreach ($input as $elem) {
-        $arrayNew[] = array_fill_keys($elem['tags'], $elem['name']);
-    }
-
-    $result = array_merge_recursive($arrayNew[0], $arrayNew[1], $arrayNew[2]);
-    ksort($result);
-
-    return $result;
-}
