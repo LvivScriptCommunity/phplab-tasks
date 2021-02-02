@@ -35,7 +35,9 @@ function sayHelloArgument($arg)
  */
 function sayHelloArgumentWrapper($arg)
 {
-    // put your code here
+    if (!is_string($arg) && !is_bool($arg) && !is_numeric($arg)) {
+        throw new InvalidArgumentException('InvalidArgumentException');
+    }
 
     return sayHelloArgument($arg);
 }
@@ -44,12 +46,13 @@ function sayHelloArgumentWrapper($arg)
  * Create a PhpUnit test (CountArgumentsTest) which will check that function below returns correct result
  * Check how it works with: no arguments, one string argument, a couple of string arguments
  *
+ * @param array $input
  * @return array
  */
 function countArguments()
 {
     return [
-        'argument_count'  => func_num_args(),
+        'argument_count' => func_num_args(),
         'argument_values' => func_get_args(),
     ];
 }
@@ -69,5 +72,12 @@ function countArguments()
  */
 function countArgumentsWrapper()
 {
-    // put your code here
+    $args = func_get_args();
+    foreach ($args as $arg) {
+        if (!is_string($arg)) {
+            throw new InvalidArgumentException('InvalidArgumentException');
+        }
+    }
+
+    return countArguments($args);
 }

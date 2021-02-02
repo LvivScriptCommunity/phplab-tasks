@@ -12,15 +12,15 @@
  */
 function getMinuteQuarter(int $minute)
 {
-    if ($minute > 0 AND $minute < 16) {
+    if ($minute > 0 && $minute < 16) {
         return 'first';
-    } elseif ($minute > 15 AND $minute < 31) {
+    } elseif ($minute > 15 && $minute < 31) {
         return 'second';
-    } elseif ($minute > 30 AND $minute < 46) {
+    } elseif ($minute > 30 && $minute < 46) {
         return 'third';
-    } elseif ($minute > 45 AND $minute < 61 OR $minute == 0) {
+    } elseif ($minute > 45 && $minute < 61 || $minute == 0) {
         return 'fourth';
-    } elseif ($minute < 0 OR $minute > 60 ) {
+    } elseif ($minute < 0 || $minute > 60 ) {
         throw new InvalidArgumentException('InvalidArgumentException;');
     }
 }
@@ -78,6 +78,6 @@ function isSumEqual(string $input)
             return false;
         }
     } else {
-    throw new InvalidArgumentException('InvalidArgumentException;');
-}
+        throw new InvalidArgumentException('InvalidArgumentException;');
+    }
 }

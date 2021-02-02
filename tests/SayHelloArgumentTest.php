@@ -1,11 +1,27 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 
 class SayHelloArgumentTest extends TestCase
 {
-    public function testFailure()
+    /**
+     * @dataProvider positiveDataProvider
+     * @param $arg
+     * @param $expected
+     */
+
+    public function testPositive($arg, $expected)
     {
-        $arg =true;
-        $this->assertIsString(SayHelloArgument($arg));
+        $this->assertIsString($expected, SayHelloArgument($arg));
     }
+
+    public function positiveDataProvider()
+    {
+        return [
+            [5, 'Hello 5'],
+            ['Alex', 'Hello Alex'],
+            [true, 'Hello true']
+        ];
+    }
+
 }
