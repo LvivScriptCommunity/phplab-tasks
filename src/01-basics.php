@@ -65,7 +65,7 @@ function isSumEqual(string $input)
     $arr1 = str_split(substr($input, 0, 3));
     $arr2 = str_split(substr($input, -3));
 
-    if (mb_strlen($input) < 6) {
+    if (mb_strlen($input) <> 6) {
         throw new InvalidArgumentException("Input contains more then 6 digits");
     }
     return array_sum($arr1) == array_sum($arr2);
