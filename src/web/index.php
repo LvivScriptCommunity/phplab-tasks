@@ -53,9 +53,20 @@ $airports = require './airports.php';
         Filter by first letter:
 
         <?php foreach (getUniqueFirstLetters(require './airports.php') as $letter): ?>
-            <a href="#"><?= $letter ?></a>
-        <?php endforeach; ?>
-
+            <a href="/?filter_by_first_letter=<?= $letter ?>"><?= $letter ?></a>
+            
+        <?php endforeach; 
+session_start();
+               $_SESSION [$_GET ['filter_by_first_letter']];
+                    var_dump($_SESSION );  
+//    добавляємо куки
+    setcookie("first_letter", $_GET ['filter_by_first_letter'], time() + 60*60, "/");
+        //setcookie("first_letter", $_GET ['filter_by_first_letter'], time() + (86400 * 13), '[::1]');
+               //setcookie('cookie_id', $cookie_value, time() + (86400 * 13));
+$_COOKIE['first_letter'] = $cookie_value;
+        ?>
+        
+<a class="nav-link <?php if (!isset ($_GET['id'])){?> active<?php } ?>" href="/">All models</a>
         <a href="/" class="float-right">Reset all filters</a>
     </div>
 
@@ -91,18 +102,44 @@ $airports = require './airports.php';
              - when you apply filter_by_state, than filter_by_first_letter (see Filtering task #1) is not reset
                i.e. if you have filter_by_first_letter set you can additionally use filter_by_state
         -->
-        <?php foreach ($airports as $airport): ?>
-        <tr>
-            <td><?= $airport['name'] ?></td>
-            <td><?= $airport['code'] ?></td>
-            <td><a href="#"><?= $airport['state'] ?></a></td>
-            <td><?= $airport['city'] ?></td>
-            <td><?= $airport['address'] ?></td>
-            <td><?= $airport['timezone'] ?></td>
-        </tr>
-        <?php endforeach; ?>
+        <?php foreach ($airports as $airport):
+             //var_dump($_GET );
+            
+            if (isset ($_GET ['filter_by_first_letter'])){
+                
+                $first = substr($airport['name'], 0, 1);
+                
+                if ($_GET ['filter_by_first_letter'] == $first){
+                    ucfirst($first . '' . str_repeat(substr($airport['name'], 1), 2));
+                    
+       // var_dump($letter );    
+     
+        include $_SERVER['DOCUMENT_ROOT'] . "/list.php";
+        
+        } } else if (isset ($_GET ['filter_by_state'])){
+                
+                if ($_GET ['filter_by_state'] == $airport['state']){
+                      
+     
+        include $_SERVER['DOCUMENT_ROOT'] . "/list.php";
+        
+        } } else if (isset ($_GET ['filter_by_first_letter']) && isset ($_GET ['filter_by_state'])){
+                $first = substr($airport['name'], 0, 1);
+                
+                if ($_GET ['filter_by_first_letter'] == $first && $_GET ['filter_by_state'] == $airport['state']){
+                    ucfirst($first . '' . str_repeat(substr($airport['name'], 1), 2));
+                    
+        var_dump($_GET );    
+     
+        include $_SERVER['DOCUMENT_ROOT'] . "/list.php";
+        
+        } } else { 
+        include $_SERVER['DOCUMENT_ROOT'] . "/list.php";
+        } endforeach; 
+            ?>
         </tbody>
     </table>
+    
 
     <!--
         Pagination task

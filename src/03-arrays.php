@@ -5,16 +5,16 @@
  * without changing the order.
  * Example: [1,3,2] => [1,3,3,3,2,2]
  *
- * @param  array  $input
+ * @param array $input
  * @return array
  */
 
 function repeatArrayValues(array $input)
 {
     $result = [];
-    
-    foreach ($input as $value){
-        for ($i = 0; $i < $value; $i++){
+
+    foreach ($input as $value) {
+        for ($i = 0; $i < $value; $i++) {
             $result[] = $value;
         }
     }
@@ -26,14 +26,14 @@ function repeatArrayValues(array $input)
  * Return the lowest unique value or 0 if there is no unique values or array is empty.
  * Example: [1, 2, 3, 2, 1, 5, 6] => 3
  *
- * @param  array  $input
+ * @param array $input
  * @return int
  */
 
 function getUniqueValue(array $input)
 {
-    $diffUniqe = array_diff($input, array_diff_key ($input, array_unique($input)));
-    
+    $diffUniqe = array_diff($input, array_diff_key($input, array_unique($input)));
+
     if (empty($diffUniqe)) {
         return 0;
     }
@@ -61,16 +61,18 @@ function getUniqueValue(array $input)
  *  'yellow' => ['orange', 'potato'],
  * ]
  *
- * @param  array  $input
+ * @param array $input
  * @return array
  */
 function groupByTag(array $input)
 {
     array_multisort($input);
-    foreach($input as $row) {
-        foreach($row ['tags'] as $tag){
+    foreach ($input as $row) {
+        foreach ($row ['tags'] as $tag) {
             $sortedData[$tag][] = $row['name'];
-            }
         }
+    }
+    ksort($sortedData);
+
     return $sortedData;
 }
