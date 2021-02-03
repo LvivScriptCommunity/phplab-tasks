@@ -37,6 +37,9 @@ class IsLeapYearTest extends TestCase
             [2021, false],
             [2024, true],
             [2028, true],
+            [2100, false],
+            [2200, false],
+            [2300, false],
         ];
     }
 }

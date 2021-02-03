@@ -28,3 +28,12 @@ https://phpunit.readthedocs.io/en/9.2/textui.html
  * Execute in terminal `git fetch upstream`
  * Execute in terminal `git pull upstream master`
  * Execute in terminal `composer dump-autoload`
+ 
+OR
+
+Follow the instruction to update from GitHub Web UI: 
+ * https://www.earthdatascience.org/courses/intro-to-earth-data-science/git-github/github-collaboration/update-github-repositories-with-changes-by-others/
+
+## How to resolve conflicts
+ * https://www.youtube.com/watch?v=JtIX3HJKwfo
+ * https://www.youtube.com/watch?v=xNVM5UxlFSA
