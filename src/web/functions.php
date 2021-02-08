@@ -29,7 +29,7 @@ function getUniqueFilterFirstLetter(array $airports)
         }
     }
     $lastpage = count($airports);
-    var_dump($lastpage);
+
     return $filterAirports;
 }
 
@@ -60,7 +60,7 @@ function getPagination($airports, $pageSize = 5, $page = 1)
     $startpoint = ($page * $limit) - $limit;
     $total = count($airports);
     $lastpage = ceil($total / $pageSize);
-    var_dump($page);
+    
     return array_slice($airports, $startpoint, $pageSize);
 }
 
