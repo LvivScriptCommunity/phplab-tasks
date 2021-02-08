@@ -5,6 +5,7 @@
             "src/02-strings.php",
             "src/03-arrays.php",
             "src/04-functions.php",
+            "src/oop/example.php",
             "src/web/functions.php"
         ],
         "psr-4": {
