@@ -11,25 +11,11 @@ class SayHelloTest extends TestCase
     {
         $this->assertEquals($expected, sayHello());
     }
-    /*
-       public function testNegative($expected)
-    {
-        $this->assertEquals($expected, sayHello());
-    }
-      public function NegativeDataProvider()
-    {
-        return [
-            ["Hello", "Hello"]
-				];
 
-    }
-	
-    */
-	public function positiveDataProvider()
+    public function positiveDataProvider()
     {
         return [
             ["Hello", "Hello"],
-				];
-
+                ];
     }
 }

@@ -17,9 +17,9 @@ $url1 = $_SERVER['REQUEST_URI'];
 if (isset($_GET["filter_by_first_letter"])) {
     if (isset($_GET["filter_by_state"])) {
         $airports = filterByState($_GET["filter_by_state"], $airports);
-        $airports = filterByBirstLetter($_GET["filter_by_first_letter"], $airports);
+        $airports = filterByFirstLetter($_GET["filter_by_first_letter"], $airports);
     } else {
-        $airports = filterByBirstLetter($_GET["filter_by_first_letter"], $airports);
+        $airports = filterByFirstLetter($_GET["filter_by_first_letter"], $airports);
     }
 } elseif (isset($_GET["filter_by_state"])) {
     $airports = filterByState($_GET["filter_by_state"], $airports);
@@ -42,11 +42,11 @@ if (isset($_GET["sort_by"])) {
  * and apply pagination logic
  * (see Pagination task below)
  */
-$pagecount = count($airports) / 20 ;
-$currentpage = 0 ;
+$pageCount = count($airports) / 20 ;
+$currentPage = 0 ;
 if (isset($_GET["page"])) {
-    $currentpage = (int)$_GET["page"];
-    $offset = ($currentpage * 20) - 20;
+    $currentPage = (int)$_GET["page"];
+    $offset = ($currentPage * 20) - 20;
     $airports = array_slice($airports, $offset, 20);
 } else {
     $airports = array_slice($airports, 0, 20);
@@ -146,8 +146,8 @@ if (isset($_GET["page"])) {
     -->
     <nav aria-label="Navigation">
         <ul class="pagination justify-content-center">
-            <?php for ($i = 0; $i < $pagecount; $i++) :?>
-                <li class="<?=($i == $currentpage ? "page-item active" : "page-item") ?>">
+            <?php for ($i = 0; $i < $pageCount; $i++) :?>
+                <li class="<?=($i == $currentPage ? "page-item active" : "page-item") ?>">
                     <a class="page-link" href="<?= (updateUrl($url1, "page") . "&page=" . $i) ?>"><?=$i ?></a></li>
             <?php endfor; ?>
         </ul>

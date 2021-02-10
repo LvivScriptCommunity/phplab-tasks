@@ -11,33 +11,25 @@ class CountArgumentsTest extends TestCase
     {
         $this->assertEquals($expected, countArguments(...$arg));
     }
-    /*
-        public function testNegative()
-    {
-         $this->expectException(InvalidArgumentException::class);
 
-        countArguments(NULL);
-	}
-	*/
-	public function positiveDataProvider()
+    public function positiveDataProvider()
     {
         return [
             [[] ,[
         'argument_count'  => 0,
-        'argument_values' =>[],
-				],
-			],
+        'argument_values' => [],
+                ],
+            ],
             [["arg"],[
-        'argument_count'  => 1,
-        'argument_values' => ["arg"],
-				],
-			],
+            'argument_count'  => 1,
+            'argument_values' => ["arg"],
+                ],
+            ],
             [["arg1","arg2"],[
-        'argument_count'  => 2,
-        'argument_values' => ["arg1","arg2"],
-				],
-			],
-		];
-
+            'argument_count'  => 2,
+            'argument_values' => ["arg1","arg2"],
+                ],
+            ],
+        ];
     }
 }

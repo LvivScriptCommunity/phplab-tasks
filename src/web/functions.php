@@ -14,43 +14,43 @@
 function getUniqueFirstLetters(array $airports): array
 {
     // Put your logic here.
-    $retunarray = [];
+    $returnArray = [];
     foreach ($airports as $airport) {
-        array_push($retunarray, substr($airport['name'], 0, 1));
+        array_push($returnArray, substr($airport['name'], 0, 1));
     }
 
-    $retunarray = array_unique($retunarray);
-    asort($retunarray);
-    return $retunarray;
+    $returnArray = array_unique($returnArray);
+    asort($returnArray);
+    return $returnArray;
 }
 //end getUniqueFirstLetters()
 
-function filterByBirstLetter($firstletter, array $airports): array
+function filterByFirstLetter($firstLetter, array $airports): array
 {
-    $retunarray = [];
+    $returnArray = [];
     foreach ($airports as $airport) {
-        if (substr($airport['name'], 0, 1) == $firstletter) {
-            array_push($retunarray, $airport);
+        if (substr($airport['name'], 0, 1) == $firstLetter) {
+            array_push($returnArray, $airport);
         }
     }
 
-    asort($retunarray);
-    return($retunarray);
+    asort($returnArray);
+    return($returnArray);
 }
-//end filterByBirstLetter()
+//end filterByFirstLetter()
 
 // filter_by_state
 function filterByState($state, array $airports): array
 {
-    $retunarray = [];
+    $returnArray = [];
     foreach ($airports as $airport) {
         if ($airport['state'] == $state) {
-            array_push($retunarray, $airport);
+            array_push($returnArray, $airport);
         }
     }
 
-    asort($retunarray);
-    return($retunarray);
+    asort($returnArray);
+    return($returnArray);
 }
 //end filterByState()
 
