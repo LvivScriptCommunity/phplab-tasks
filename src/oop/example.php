@@ -1,4 +1,6 @@
 <?php
+include '../../vendor/autoload.php';
+
 use src\oop\Calculator;
 use src\oop\Commands\SubCommand;
 use src\oop\Commands\SumCommand;
