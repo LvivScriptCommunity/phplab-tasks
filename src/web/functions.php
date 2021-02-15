@@ -6,7 +6,7 @@
  *
  * Create a PhpUnit test (GetUniqueFirstLettersTest) which will check this behavior
  *
- * @param  array  $airports
+ * @param array $airports
  * @return string[]
  */
 function getUniqueFirstLetters(array $airports)
@@ -22,13 +22,20 @@ function getUniqueFirstLetters(array $airports)
     return array_unique($FirstLetters);
 }
 
-// Формируем массив $airports в зависимости от GET-параметра filter_by_first_letter
+/**
+ * The $airports variable contains array of arrays of airports (see airports.php). It may be changed by
+ * 'filterByState' function.
+ *
+ * The function returns an array of arrays, in each of which the 'name' field starts with a letter equal to
+ * $_GET['filter_by_first_letter']
+ *
+ * @param array $airports
+ * @return array
+ */
 function filterByFirstLetter($airports)
 {
     $airports_by_letter = [];
 
-    // Записываем в массив те элементы массива, у которых первая буква значения ключа 'name' равна значению
-    //get-параметра 'filter_by_first_letter'
     foreach ($airports as $key => $airport) {
         if ($airport['name'][0] == $_GET['filter_by_first_letter']) {
             $airports_by_letter[] = $airport;
@@ -38,13 +45,20 @@ function filterByFirstLetter($airports)
     return $airports_by_letter;
 }
 
-// Формируем массив $airports в зависимости от GET-параметра filter_by_state
+/**
+ * The $airports variable contains array of arrays of airports (see airports.php). It may be changed by
+ * 'filterByFirstLetter' function.
+ *
+ * The function returns an array of arrays, in each of which the 'state' field starts with a letter equal to
+ * $_GET['filter_by_state']
+ *
+ * @param array $airports
+ * @return array
+ */
 function filterByState($airports)
 {
     $airports_by_state = [];
 
-    // Записываем в массив те элементы массива, у которых первая буква значения ключа 'state' равна значению
-    //get-параметра 'filter_by_state'
     foreach ($airports as $key => $airport) {
         if ($airport['state'][0] == $_GET['filter_by_state']) {
             $airports_by_state[] = $airport;
@@ -54,7 +68,15 @@ function filterByState($airports)
     return $airports_by_state;
 }
 
-// Сортируем массив $airports в зависимости от GET-параметра sort
+/**
+ * The $airports variable contains array of arrays of airports (see airports.php). It may be changed by
+ * 'filterByFirstLetter' or (and) 'filterByState' functions.
+ *
+ * The function returns an array of arrays sorted according to $_GET['sort']
+ *
+ * @param  array  $airports
+ * @return array
+ */
 function sortAirports($airports)
 {
     $airports_sort = [];
@@ -70,31 +92,33 @@ function sortAirports($airports)
     return $airports;
 }
 
-// Функция формирования ссылки с учётом существующих GET-параметров
+/**
+ * The function checks $_GET and adds into it new parameters
+ *
+ * The function returns string which includes new parameters
+ *
+ * @param array $get parameters from $_GET
+ * @param array $link new parameters
+ * @return string
+ */
 function getLink($get, array $link = [])
 {
-    # Массив с GET-параметрами
     $get_params = [];
 
-    // Проверка наличия get-параметра filter_by_first_letter
     if (isset($get['filter_by_first_letter'])) {
         $get_params['filter_by_first_letter'] = $get['filter_by_first_letter'];
     }
 
-    // Проверка наличия get-параметра filter_by_state
     if (isset($get['filter_by_state'])) {
         $get_params['filter_by_state'] = $get['filter_by_state'];
     }
 
-    // Проверка наличия get-параметра sort
     if (isset($get['sort'])) {
         $get_params['sort'] = $get['sort'];
     }
 
-    // Объединение существующего массива с get-параметрами и новыми
     $get_params = array_replace($get_params, $link);
 
-    # Преобразование массива в строку с GET-параметрами
     $url = '';
     foreach ($get_params as $key => $param) {
         $url .= "&$key=$param";
@@ -103,10 +127,20 @@ function getLink($get, array $link = [])
     return $url;
 }
 
-// Формирование списка аэропортов для пагинации
+/**
+ * The $airports variable contains array of arrays of airports (see airports.php). It may be changed by
+ * 'filterByFirstLetter' or (and) 'filterByState' functions.
+ *
+ * The function returns an array of arrays separated on groups according to $airportsPerPage
+ *
+ * @param array $airports
+ * @param int $airportsPerPage
+ * @param int $currentPage
+ * @param int $pageQty
+ * @return array
+ */
 function pagination(array $airports, int $airportsPerPage, int $currentPage, int $pageQty)
 {
-    // Распределяем массив airports на общее количество страниц
     if ($currentPage >= 1 && $currentPage <= $pageQty) {
         $from = ($currentPage - 1) * $airportsPerPage;
         $airports = array_slice($airports, $from, $airportsPerPage);

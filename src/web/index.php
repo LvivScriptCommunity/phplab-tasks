@@ -9,15 +9,13 @@ $airports = require './airports.php';
  * and apply filtering by First Airport Name Letter and/or Airport State
  * (see Filtering tasks 1 and 2 below)
  */
-// Записываем в переменную GET-параметры для формирования массивов с фильтрацией и сортировкой
+
 $get = $_GET;
 
-// Формируем массив $airports в зависимости от GET-параметра filter_by_first_letter
 if (isset($_GET['filter_by_first_letter'])) {
     $airports = filterByFirstLetter($airports);
 }
 
-// Формируем массив $airports в зависимости от GET-параметра filter_by_state
 if (isset($_GET['filter_by_state'])) {
     $airports = filterByState($airports);
 }
@@ -29,7 +27,6 @@ if (isset($_GET['filter_by_state'])) {
  * (see Sorting task below)
  */
 
-// Сортируем массив $airports в зависимости от GET-параметра sort
 if (isset($_GET['sort'])) {
     $airports = sortAirports($airports);
 }
@@ -40,17 +37,16 @@ if (isset($_GET['sort'])) {
  * and apply pagination logic
  * (see Pagination task below)
  */
-// Определяем текущую страницу
+
 if (isset($_GET['page'])) {
     $currentPage = intval($_GET['page']);
 } else {
     $currentPage = 1;
 }
 
-// Формирование списка аэропортов для пагинации
-$airportsPerPage = 5; // Количество аэропортов на одной странице
+$airportsPerPage = 5;
 
-$pageQty = ceil(count($airports) / $airportsPerPage); // Общее количество страниц
+$pageQty = ceil(count($airports) / $airportsPerPage);
 
 $airports = pagination($airports, $airportsPerPage, $currentPage, $pageQty);
 
