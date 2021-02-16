@@ -1,3 +1,4 @@
 .idea
 vendor
 /src/oop/Commands/Home_task_DB.sql
+src/db/config.php
