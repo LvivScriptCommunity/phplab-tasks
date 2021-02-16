@@ -1,10 +1,12 @@
 <?php
+
 /**
  * Create a PhpUnit test (SayHelloTest) which will check that function below returns a correct result
  * i.e. returns 'Hello'
  *
  * @return string
  */
+
 function sayHello()
 {
     return 'Hello';
@@ -35,9 +37,11 @@ function sayHelloArgument($arg)
  */
 function sayHelloArgumentWrapper($arg)
 {
-    // put your code here
-
-    return sayHelloArgument($arg);
+    if (is_int($arg) || is_bool($arg) || is_string($arg)) {
+        return sayHelloArgument($arg);
+    } else {
+        throw new InvalidArgumentException("type error");
+    }
 }
 
 /**
@@ -69,5 +73,13 @@ function countArguments()
  */
 function countArgumentsWrapper()
 {
+    $args = func_get_args();
+    foreach ($args as $values) {
+        if (!is_string($values)) {
+            throw new InvalidArgumentException("arg not string");
+            exit();
+        }
+    }
+    countArguments(...$args);
     // put your code here
 }

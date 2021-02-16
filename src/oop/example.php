@@ -2,6 +2,7 @@
 use src\oop\Calculator;
 use src\oop\Commands\SubCommand;
 use src\oop\Commands\SumCommand;
+include '../../vendor/autoload.php';
 
 $calc = new Calculator();
 $calc->addCommand('+', new SumCommand());
