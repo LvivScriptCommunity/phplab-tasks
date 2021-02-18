@@ -1,25 +1,4 @@
 <?php
-/**
- * TODO
- *  Write DPO statements to create following tables:
- *
- *  # airports
- *   - id (unsigned int, autoincrement)
- *   - name (varchar)
- *   - code (varchar)
- *   - city_id (relation to the cities table)
- *   - state_id (relation to the states table)
- *   - address (varchar)
- *   - timezone (varchar)
- *
- *  # cities
- *   - id (unsigned int, autoincrement)
- *   - name (varchar)
- *
- *  # states
- *   - id (unsigned int, autoincrement)
- *   - name (varchar)
- */
 
 /** @var \PDO $pdo */
 require_once './pdo_ini.php';
@@ -34,7 +13,7 @@ CREATE TABLE `cities` (
 SQL;
 $pdo->exec($sql);
 
-// TODO states
+//  states
 $sql = <<<'SQL'
 CREATE TABLE `states` (
 	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -44,7 +23,7 @@ CREATE TABLE `states` (
 SQL;
 $pdo->exec($sql);
 
-// TODO airports
+//  airports
 $sql = <<<'SQL'
 CREATE TABLE `airports` (
 	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
