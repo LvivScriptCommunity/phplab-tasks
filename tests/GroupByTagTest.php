@@ -25,7 +25,7 @@ class GroupByTagTest extends TestCase
                     'fruit' => ['apple', 'orange'],
                     'green' => ['apple'],
                     'vegetable' => ['potato'],
-                    'yellow' => ['orange', 'potato'],
+                    'yellow' => ['potato', 'orange'],
                 ]
             ],
             [
@@ -39,13 +39,13 @@ class GroupByTagTest extends TestCase
                         'Learning php, mysql & JavaScript'
                     ],
                     'mysql' => [
-                        'Learning php, mysql & JavaScript',
                         'Php for the Web: Visual QuickStart Guide',
+                        'Learning php, mysql & JavaScript'
                     ],
                     'php' => [
-                        'Learning php, mysql & JavaScript',
-                        'Modern PhP: New Features and Good Practices',
                         'Php for the Web: Visual QuickStart Guide',
+                        'Modern PhP: New Features and Good Practices',
+                        'Learning php, mysql & JavaScript',
                     ],
                 ]
             ],

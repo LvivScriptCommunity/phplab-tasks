@@ -1,24 +1,26 @@
 <?php
+declare(strict_types=1);
+
 
 use PHPUnit\Framework\TestCase;
 
-class RepeatArrayValuesTest extends TestCase
+class SayHelloArgumentTest extends TestCase
 {
     /**
      * @dataProvider positiveDataProvider
      */
     public function testPositive($input, $expected)
     {
-        $this->assertEquals($expected, repeatArrayValues($input));
+        $this->assertEquals($expected, sayHelloArgument($input));
     }
 
     public function positiveDataProvider()
     {
         return [
-            [[], []],
-            [[1, 2], [1, 2, 2]],
-            [[3, 1, 2], [3, 3, 3, 1, 2, 2]],
-            [[4], [4, 4, 4, 4]],
+            ['dolphin', 'Hello dolphin'],
+            [true, 'Hello 1'],
+            [2, 'Hello 2']
         ];
     }
+
 }
