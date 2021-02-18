@@ -56,7 +56,7 @@ class Session implements SessionInterface
      */
     public function get($key, $default = null)
     {
-        if(isset($this->session[$key])){
+        if (isset($this->session[$key])) {
             return $this->session[$key];
         }
 

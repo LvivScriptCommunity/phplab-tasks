@@ -29,12 +29,13 @@ class Cookies implements CookiesInterfaces
 
             return $result;
         }
+
         return $this->cookies;
     }
 
     public function get($key, $default = null)
     {
-        if(isset($this->cookies[$key])){
+        if (isset($this->cookies[$key])) {
             return $this->cookies[$key];
         }
 
