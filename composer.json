@@ -9,7 +9,8 @@
             "src/web/functions.php"
         ],
         "psr-4": {
-            "src\\": "src/"
+            "src\\": "src/",
+            "OOP\\": "src/oop"
         }
     },
     "require": {
