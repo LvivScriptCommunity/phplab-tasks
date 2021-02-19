@@ -10,15 +10,6 @@ require_once './pagination.php';
  * and https://www.w3resource.com/sql/select-statement/queries-with-distinct.php
  * and set the result to $uniqueFirstLetters variable
  */
-$state = NULL;
-$name = NULL;
-if (!isset ($_GET['sort'])){
-    $sort = 'id';
-} else {
-    $sort = $_GET['sort'];
-}
-
-
 
 $sth = $pdo->prepare('SELECT DISTINCT LEFT(name, 1)  FROM airports ORDER BY name ASC');
     $sth->setFetchMode(\PDO::FETCH_ASSOC);
@@ -37,7 +28,16 @@ $sth = $pdo->prepare('SELECT DISTINCT LEFT(name, 1)  FROM airports ORDER BY name
  * For filtering by state you will need to JOIN states table and check if states.name = A
  * where A - requested filter value
  */
- 
+
+$state = NULL;
+$name = NULL;
+
+if (!isset ($_GET['sort'])){
+    $sort = 'id';
+} else {
+    $sort = $_GET['sort'];
+}
+
 $page = (int)(!isset($_GET["page"]) ? 1 : $_GET["page"]);
     $limit = 5;
     $startpoint = ($page * $limit) - $limit;
@@ -72,7 +72,7 @@ if (isset($_GET['filter_by_first_letter']) AND isset($_GET['filter_by_state']) )
 $sth->setFetchMode(\PDO::FETCH_ASSOC);
 $sth->execute();
 $airports = $sth->fetchAll();
-//var_dump($airports);
+
 // Sorting
 /**
  * Here you need to check $_GET request if it has sorting key
@@ -83,11 +83,6 @@ $airports = $sth->fetchAll();
  * where A - requested filter value
  */
 
-//if (isset($_GET['sort']) ) {
-//$sort = array_column($airports, $_GET['sort']);
-//    array_multisort($sort, SORT_ASC, $airports);
-//}
-//var_dump(array_multisort($sort, SORT_ASC, $airports));
 // Pagination
 /**
  * Here you need to check $_GET request if it has pagination key
