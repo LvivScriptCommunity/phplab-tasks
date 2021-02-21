@@ -14,7 +14,6 @@ foreach (require_once('../web/airports.php') as $item) {
     $sth->setFetchMode(\PDO::FETCH_ASSOC);
     $sth->execute(['name' => $item['city']]);
     $city = $sth->fetch();
-
     if (!$city) {
         $sth = $pdo->prepare('INSERT INTO cities (name) VALUES (:name)');
         $sth->execute(['name' => $item['city']]);
@@ -27,7 +26,6 @@ foreach (require_once('../web/airports.php') as $item) {
     $sth->setFetchMode(\PDO::FETCH_ASSOC);
     $sth->execute(['name' => $item['state']]);
     $state = $sth->fetch();
-
     if (!$state) {
         $sth = $pdo->prepare('INSERT INTO states (name) VALUES (:name)');
         $sth->execute(['name' => $item['state']]);
@@ -40,7 +38,6 @@ foreach (require_once('../web/airports.php') as $item) {
     $sth->setFetchMode(\PDO::FETCH_ASSOC);
     $sth->execute(['name' => $item['name'], 'code' => $item['code'], 'address' => $item['address'], 'timezone' => $item['timezone'], 'state_id' => $stateId, 'city_id'=> $cityId]);
     $airport = $sth->fetch();
-
     if (!$airport) {
         $sth = $pdo->prepare('INSERT INTO airports (name, code, address,  timezone, state_id, city_id) VALUES (:name, :code, :address, :timezone, :state_id, :city_id)');
         $sth->execute(['name' => $item['name'], 'code' => $item['code'], 'address' => $item['address'], 'timezone' => $item['timezone'], 'state_id' => $stateId, 'city_id'=> $cityId]);
