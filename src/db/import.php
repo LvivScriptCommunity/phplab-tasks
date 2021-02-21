@@ -10,26 +10,36 @@
 require_once './pdo_ini.php';
 
 foreach (require_once('../web/airports.php') as $item) {
-    // Cities
-    // To check if city with this name exists in the DB we need to SELECT it first
     $sth = $pdo->prepare('SELECT id FROM cities WHERE name = :name');
     $sth->setFetchMode(\PDO::FETCH_ASSOC);
     $sth->execute(['name' => $item['city']]);
     $city = $sth->fetch();
-
-    // If result is empty - we need to INSERT city
     if (!$city) {
         $sth = $pdo->prepare('INSERT INTO cities (name) VALUES (:name)');
         $sth->execute(['name' => $item['city']]);
-
-        // We will use this variable to INSERT airport
         $cityId = $pdo->lastInsertId();
     } else {
-        // We will use this variable to INSERT airport
         $cityId = $city['id'];
     }
 
-    // TODO States
+    $sth = $pdo->prepare('SELECT id FROM states WHERE name = :name');
+    $sth->setFetchMode(\PDO::FETCH_ASSOC);
+    $sth->execute(['name' => $item['state']]);
+    $state = $sth->fetch();
+    if (!$state) {
+        $sth = $pdo->prepare('INSERT INTO states (name) VALUES (:name)');
+        $sth->execute(['name' => $item['state']]);
+        $stateId = $pdo->lastInsertId();
+    } else {
+        $stateId = $state['id'];
+    }
 
-    // TODO Airports
+    $sth = $pdo->prepare('SELECT id FROM airports WHERE name = :name AND code = :code AND address = :address AND timezone = : timezone AND state_id = : state_id AND city_id = : city_id');
+    $sth->setFetchMode(\PDO::FETCH_ASSOC);
+    $sth->execute(['name' => $item['name'], 'code' => $item['code'], 'address' => $item['address'], 'timezone' => $item['timezone'], 'state_id' => $stateId, 'city_id'=> $cityId]);
+    $airport = $sth->fetch();
+    if (!$airport) {
+        $sth = $pdo->prepare('INSERT INTO airports (name, code, address,  timezone, state_id, city_id) VALUES (:name, :code, :address, :timezone, :state_id, :city_id)');
+        $sth->execute(['name' => $item['name'], 'code' => $item['code'], 'address' => $item['address'], 'timezone' => $item['timezone'], 'state_id' => $stateId, 'city_id'=> $cityId]);
+    }
 }
