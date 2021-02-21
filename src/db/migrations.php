@@ -24,7 +24,6 @@
 /** @var \PDO $pdo */
 require_once './pdo_ini.php';
 
-// cities
 $sql = <<<'SQL'
 CREATE TABLE IF NOT EXISTS `cities` (
 	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -33,7 +32,6 @@ CREATE TABLE IF NOT EXISTS `cities` (
 );
 SQL;
 $pdo->exec($sql);
-
 $sql = <<<'SQL'
 CREATE TABLE IF NOT EXISTS `states` (
 	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -42,7 +40,6 @@ CREATE TABLE IF NOT EXISTS `states` (
 );
 SQL;
 $pdo->exec($sql);
-
 $sql = <<<'SQL'
 CREATE TABLE IF NOT EXISTS `airports` (
 	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,

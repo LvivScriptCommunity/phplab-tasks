@@ -161,9 +161,7 @@ $airports = getAirports($pdo);
 </head>
 <body>
 <main role="main" class="container">
-
     <h1 class="mt-5">US Airports</h1>
-
     <!--
         Filtering task #1
         Replace # in HREF attribute so that link follows to the same page with the filter_by_first_letter key
@@ -182,7 +180,6 @@ $airports = getAirports($pdo);
 
         <a href="/" class="float-right">Reset all filters</a>
     </div>
-
     <!--
         Sorting task
         Replace # in HREF so that link follows to the same page with the sort key with the proper sorting value
@@ -225,7 +222,6 @@ $airports = getAirports($pdo);
         <?php endforeach; ?>
         </tbody>
     </table>
-
     <!--
         Pagination task
         Replace HTML below so that it shows real pages dependently on number of airports after all filters applied
@@ -249,6 +245,5 @@ $airports = getAirports($pdo);
             </ul>
         </nav>
     <?php } ?>
-
 </main>
 </html>
