@@ -177,7 +177,7 @@ if (isset($_POST['update'])) {
                 <form method="post" action="./index.php" >
                 <div class="col-1"><select name="selectedlist" class="select" >
                     <?php foreach ($lists_array as $List) :?>
-                        <option value="<?= $List['id']?>" <?=($List['id'] == $_SESSION['list_id']) ? "selected" : ""?>>
+                        <option  value="<?= $List['id']?>" <?=($List['id'] == $_SESSION['list_id']) ? "selected" : ""?>>
                             <?= $List['list_name']?></option>
                     <?php endforeach ?>
                     </select>
@@ -234,7 +234,7 @@ if (isset($_POST['update'])) {
       <?php foreach ($task_array as $List) :?>
         <tr id="current <?= $List['id'] ?>" CLASS="table-row">
             <form method="post" action="./index.php">
-                <td class="td-1"><input type="checkbox"  <?= (($List['is_done'] == 1) ? "checked" : '' ) ?> ></td>
+                <td class="td-1"><input type="checkbox" disabled <?= (($List['is_done'] == 1) ? "checked" : '' ) ?> ></td>
                 <td class="td-2"><?= $List['title']?></td>
                 <td class="td-3"><?= $List['created_at']?> <input type="hidden" name="task_id" value="<?= $List['id'] ?>"></td>
                 <td class="td-4"><input name="delete" type="submit" value="Delete" class="btn"></td>
